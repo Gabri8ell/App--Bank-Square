@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Square Bank</string>
+    <string name="title_activity_bank_statement">Extrato de Movimentações</string>
+    <string name="txt_wellcome">Seja bem vindo ao Square Bank</string>
+
+    <string name="edt_id_correntista">Digite seu Id</string>
+    <string name="btn_login">Login</string>
+    <string name="nome_correntista">Nome do Correntista</string>
+    <string name="saldo_conta">Saldo da conta</string>
+</resources>

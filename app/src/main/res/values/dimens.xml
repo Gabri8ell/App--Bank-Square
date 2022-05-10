@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="topToBotton">16dp</dimen>
+    <dimen name="EndToEnd">16dp</dimen>
+    <dimen name="startTostar">16dp</dimen>
+    <dimen name="topToTop">32dp</dimen>
+</resources>
