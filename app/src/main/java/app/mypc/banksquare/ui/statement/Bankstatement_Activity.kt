@@ -6,16 +6,14 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import app.mypc.banksquare.R
-import app.mypc.banksquare.data.BanklineRepository
 import app.mypc.banksquare.data.BanklineRepository.findAccountHolder
 import app.mypc.banksquare.data.remote.State
 import app.mypc.banksquare.databinding.ActivityBankstatementBinding
+import app.mypc.banksquare.domain.Conta
 import app.mypc.banksquare.domain.Correntista
-import app.mypc.banksquare.domain.Movimentacao
-import app.mypc.banksquare.domain.TipoMovimentacao
 import app.mypc.banksquare.ui.welcome.MainActivity
 import com.google.android.material.snackbar.Snackbar
+import java.text.NumberFormat
 
 class Bankstatement_Activity : AppCompatActivity() {
 
@@ -26,7 +24,7 @@ class Bankstatement_Activity : AppCompatActivity() {
     private val binding by lazy { ActivityBankstatementBinding.inflate(layoutInflater) }
 
     private val accountHolder by lazy {
-        intent.getParcelableExtra<Correntista>(EXTRA_ACCOUNT_HOLDER) ?: throw IllegalArgumentException()}
+        intent.getIntExtra(EXTRA_ACCOUNT_HOLDER, 1) ?: throw IllegalArgumentException()}
 
     private val viewModelStatement by viewModels<BankStatementViewModel>()
     private val viewModelAccount by viewModels<BankAccountHolderViewModel>()
@@ -38,34 +36,38 @@ class Bankstatement_Activity : AppCompatActivity() {
         binding.rcvBankStatement.layoutManager = LinearLayoutManager(this)
 
         findBankStatement()
-        findAccountHolder()
 
         binding.slrBankstatement.setOnRefreshListener { findBankStatement() }
 
     }
 
     private fun findAccountHolder() {
-//        viewModelAccount.findAccountHolder(accountHolder.id).observe(this){ state ->
-//            when(state){
-//                is State.Success -> {
-//                    if(state.data?.size.equals(0) != true){
-//                        binding.rcvBankStatement.adapter.
-//                    }
-//                }
-//            }
-//        }
+        viewModelAccount.findAccountHolder(accountHolder).observe(this){ state ->
+            when(state){
+                is State.Success -> {
+                    if(state.data != null){
+                        binding.txvNomeCorrentista.text = state.data.nome
+                        binding.txtSaldoConta.text = NumberFormat
+                            .getCurrencyInstance()
+                            .format(state.data.conta.saldo.toString().toFloat())
+                    }
+                }
+            }
+        }
     }
 
     private fun findBankStatement() {
-        viewModelStatement.findBankStatement(accountHolder.id).observe(this){ state ->
+        viewModelStatement.findBankStatement(accountHolder).observe(this){ state ->
             when(state){
                 is State.Success -> {
-                    val adapter = state.data?.let { BankStatementAdapter(it) }
+                    val adapter = state.data?.let { BankStatementAdapter(it, this) }
+                    //Se id digitado coresponder a algum correntista
                     if (adapter?.itemCount?.equals(0) != true) {
+                        findAccountHolder()
                         binding.rcvBankStatement.adapter = adapter
                         binding.slrBankstatement.isRefreshing = false
                     }else{
-                        Toast.makeText(this, "Não existe Correntista com ID " + accountHolder.id, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Não existe Correntista com ID $accountHolder", Toast.LENGTH_SHORT).show()
                         binding.slrBankstatement.isRefreshing = false
                         onBackPressed()
                     }

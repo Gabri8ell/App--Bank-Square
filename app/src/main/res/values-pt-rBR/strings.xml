@@ -4,8 +4,9 @@
     <string name="title_activity_bank_statement">Extrato de Movimentações</string>
     <string name="txt_wellcome">Seja bem vindo ao Square Bank</string>
 
-    <string name="edt_id_correntista">Digite seu Id</string>
+    <string name="edt_id_holder">Digite seu Id</string>
     <string name="btn_login">Login</string>
-    <string name="nome_correntista">Nome do Correntista</string>
-    <string name="saldo_conta">Saldo da conta</string>
+    <string name="holder_name">Nome do Correntista</string>
+    <string name="account_balance">Saldo da conta</string>
+    <string name="image_plus_minus">Imagem de mais ou menos</string>
 </resources>

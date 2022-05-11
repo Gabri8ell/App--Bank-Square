@@ -23,7 +23,7 @@
         android:id="@+id/title_idCorrentista"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/edt_id_correntista"
+        android:hint="@string/edt_id_holder"
         android:layout_marginTop="@dimen/topToBotton"
         android:layout_marginEnd="@dimen/EndToEnd"
         android:layout_marginStart="@dimen/startTostar"

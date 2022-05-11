@@ -3,8 +3,9 @@
     <string name="title_activity_bank_statement">Bank Statement</string>
     <string name="txt_wellcome">Welcome to the Square Bank</string>
 
-    <string name="edt_id_correntista">Enter your ID</string>
+    <string name="edt_id_holder">Enter your ID</string>
     <string name="btn_login">Login</string>
-    <string name="nome_correntista">account holder name</string>
-    <string name="saldo_conta">account balance</string>
+    <string name="holder_name">account holder name</string>
+    <string name="account_balance">account balance</string>
+    <string name="image_plus_minus">Image plus or minus</string>
 </resources>

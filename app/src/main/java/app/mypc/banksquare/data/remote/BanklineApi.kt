@@ -11,5 +11,5 @@ interface BanklineApi {
     suspend fun findBankStatment(@Path("id") accountHolder: Int): List<Movimentacao>
 
     @GET("/correntistas/{id}")
-    suspend fun findAccountHolder(@Path("id") accountHolder: Int): List<Correntista>
+    suspend fun findAccountHolder(@Path("id") accountHolder: Int): Correntista
 }

@@ -13,7 +13,7 @@ object BanklineRepository {
 
     private val restApi by lazy {
         Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:8080/")
+            .baseUrl("https://bankline-api-dev.herokuapp.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(BanklineApi::class.java)
